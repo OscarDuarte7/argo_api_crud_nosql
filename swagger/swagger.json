@@ -262,6 +262,48 @@
                 }
             }
         },
+        "/novedad/{contrato}/{vigencia}/{tiponovedad}": {
+            "get": {
+                "tags": [
+                    "novedad"
+                ],
+                "description": "get Novedad by contrato vigencia tiponovedad",
+                "operationId": "NovedadController.Get Contrato Vigencia tiponovedad",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "contrato",
+                        "description": "El contrato de la Novedad a consultar",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "vigencia",
+                        "description": "La vigencia del contrato de la Novedad a consultar",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "tiponovedad",
+                        "description": "El tipo de la Novedad a consultar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.Novedad"
+                        }
+                    },
+                    "403": {
+                        "description": ":uid is empty"
+                    }
+                }
+            }
+        },
         "/novedad/{objectId}": {
             "get": {
                 "tags": [

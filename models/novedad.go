@@ -93,6 +93,14 @@ func GetNovedadByContratoVigencia(session *mgo.Session, contrato string, vigenci
 	return novedads, err
 }
 
+func GetNovedadByContratoVigenciaTipo(session *mgo.Session, contrato string, vigencia string, tiponovedad string) ([]Novedad, error) {
+	c := db.Cursor(session, NovedadCollection)
+	defer session.Close()
+	var novedads []Novedad
+	err := c.Find(bson.M{"contrato": contrato, "vigencia": vigencia, "tiponovedad": tiponovedad}).All(&novedads)
+	return novedads, err
+}
+
 func DeleteNovedadById(session *mgo.Session, id string) (string, error) {
 	c := db.Cursor(session, NovedadCollection)
 	defer session.Close()

@@ -69,6 +69,30 @@ func (j *NovedadController) GetCV() {
 	j.ServeJSON()
 }
 
+// @Title Get Contrato Vigencia tiponovedad
+// @Description get Novedad by contrato vigencia tiponovedad
+// @Param	contrato		path 	string	true		"El contrato de la Novedad a consultar"
+// @Param	vigencia		path 	string	true		"La vigencia del contrato de la Novedad a consultar"
+// @Param	tiponovedad		path 	string	true		"El tipo de la Novedad a consultar"
+// @Success 200 {object} models.Novedad
+// @Failure 403 :uid is empty
+// @router /:contrato/:vigencia/:tiponovedad [get]
+func (j *NovedadController) GetCVT() {
+	contrato := j.GetString(":contrato")
+	vigencia := j.GetString(":vigencia")
+	tiponovedad := j.GetString(":tiponovedad")
+	session, _ := db.GetSession()
+	if contrato != "" && vigencia != "" {
+		novedad, err := models.GetNovedadByContratoVigenciaTipo(session, contrato, vigencia, tiponovedad)
+		if err != nil {
+			j.Data["json"] = err.Error()
+		} else {
+			j.Data["json"] = novedad
+		}
+	}
+	j.ServeJSON()
+}
+
 // @Title Borrar Novedad
 // @Description Borrar Novedad
 // @Param	objectId		path 	string	true		"El ObjectId del objeto que se quiere borrar"
