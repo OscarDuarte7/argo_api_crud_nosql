@@ -32,6 +32,12 @@ func init() {
 				&controllers.NovedadController{},
 			),
 		),
+
+		beego.NSNamespace("/plantilladocumento",
+			beego.NSInclude(
+				&controllers.PlantillaDocumentoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"api/db"
+	"argo_api/db"
 	"argo_api/models"
 	"encoding/json"
 	"fmt"

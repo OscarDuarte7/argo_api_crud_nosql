@@ -391,6 +391,138 @@
                 }
             }
         },
+        "/plantilladocumento/": {
+            "get": {
+                "tags": [
+                    "plantilladocumento"
+                ],
+                "description": "get all objects",
+                "operationId": "PlantillaDocumentoController.GetAll",
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.PlantillaDocumento"
+                        }
+                    },
+                    "403": {
+                        "description": ":objectId is empty"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "plantilladocumento"
+                ],
+                "description": "Crear PlantillaDocumento",
+                "operationId": "PlantillaDocumentoController.Crear PlantillaDocumento",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Body para la creacion de PlantillaDocumento",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PlantillaDocumento"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{int} PlantillaDocumento.Id"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/plantilladocumento/{objectId}": {
+            "get": {
+                "tags": [
+                    "plantilladocumento"
+                ],
+                "description": "get PlantillaDocumento by objectId",
+                "operationId": "PlantillaDocumentoController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "objectId",
+                        "description": "El id de la PlantillaDocumento a consultar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/models.PlantillaDocumento"
+                        }
+                    },
+                    "403": {
+                        "description": ":uid is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "plantilladocumento"
+                ],
+                "description": "update the PlantillaDocumento",
+                "operationId": "PlantillaDocumentoController.Update",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "objectId",
+                        "description": "The objectid you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "The body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.Object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/.Object"
+                        }
+                    },
+                    "403": {
+                        "description": ":objectId is empty"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "plantilladocumento"
+                ],
+                "description": "Borrar PlantillaDocumento",
+                "operationId": "PlantillaDocumentoController.Borrar PlantillaDocumento",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "objectId",
+                        "description": "El ObjectId del objeto que se quiere borrar",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} ok"
+                    },
+                    "403": {
+                        "description": "objectId is empty"
+                    }
+                }
+            }
+        },
         "/tiponovedad/": {
             "get": {
                 "tags": [
@@ -681,6 +813,25 @@
                 }
             }
         },
+        "models.PlantillaDocumento": {
+            "title": "PlantillaDocumento",
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/bson.ObjectId"
+                },
+                "documentoasociado": {
+                    "type": "string"
+                },
+                "fechacreacion": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "plantilla": {
+                    "type": "string"
+                }
+            }
+        },
         "models.Tiponovedad": {
             "title": "Tiponovedad",
             "type": "object",
@@ -709,6 +860,10 @@
         {
             "name": "novedad",
             "description": "Operaciones Crud Novedad\n"
+        },
+        {
+            "name": "plantilladocumento",
+            "description": "Operaciones Crud PlantillaDocumento\n"
         }
     ]
 }
